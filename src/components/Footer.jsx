@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="w-full h-96 bg-[#111111]">
       <div className="footer-top flex h-[80%]">
-        <div className="Edum w-[35%]  h-full px-40 pt-16">
+        <div className="Edum w-[35%]  h-full px-40 pt-16  max-[600px]:px-0 max-[600px]:pt-2">
           <img
             src="https://eduma.thimpress.com/demo-main/wp-content/uploads/sites/95/2022/12/logo-edu-white.png"
             alt=""
@@ -29,23 +29,23 @@ const Footer = () => {
             <i className="ri-product-hunt-line"></i>
           </div>
         </div>
-        <div className="companyLinks flex justify-evenly w-[65%] pt-16">
-          <div className="company text-zinc-50">
+        <div className="companyLinks flex  justify-evenly w-[65%] pt-16">
+          <div className="company max-[600px]:hidden text-zinc-50">
             <h1 className="text-2xl font-semibold mb-3">Company</h1>
             <p className="mt-5">About</p>
             <p className="mt-2">Blog</p>
             <p className="mt-2">Contact</p>
             <p className="mt-2">Become a Teacher</p>
           </div>
-          <div className="company text-zinc-50">
+          <div className="company max-[600px]:hidden text-zinc-50">
             <h1 className="text-2xl font-semibold mb-3">Company</h1>
             <p className="mt-5">About</p>
             <p className="mt-2">Blog</p>
             <p className="mt-2">Contact</p>
             <p className="mt-2">Become a Teacher</p>
           </div>
-          <div className="company text-zinc-50">
-            <h1 className="text-2xl font-semibold mb-3">Company</h1>
+          <div className="company max-[600px]:hidden text-zinc-50">
+            <h1 className="text-2xl  font-semibold mb-3">Company</h1>
             <p className="mt-5">About</p>
             <p className="mt-2">Blog</p>
             <p className="mt-2">Contact</p>

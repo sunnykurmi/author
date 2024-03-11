@@ -11,16 +11,18 @@ import "swiper/css/scrollbar";
 
 const LandingPage = () => {
   return (
-    <div className="w-full h-[100vh] bg-cover bg-[url('https://eduma.thimpress.com/demo-main/wp-content/uploads/sites/95/2022/12/bg-slide-2-new-1.jpg')]">
-      <div className="w-full h-2/3 p-44">
+    <div className="w-full h-[100vh] max-[600px]:h-[40vh] bg-cover bg-[url('https://eduma.thimpress.com/demo-main/wp-content/uploads/sites/95/2022/12/bg-slide-2-new-1.jpg')]">
+      <div className="w-full h-2/3 p-44 max-[600px]:py-48 max-[600px]:px-4">
         <h2 className="text-2xl text-zinc-50">The Best Theme For</h2>
-        <h1 className="text-8xl text-zinc-50">EDUCATION</h1>
+        <h1 className="text-8xl max-[600px]:text-5xl text-zinc-50">
+          EDUCATION
+        </h1>
         <button className="bg-yellow-400 p-2 px-6 rounded font-semibold mt-3">
           BUY NOW
         </button>
       </div>
 
-      <div className="w-full h-1/3 px-44 flex justify-between items-center">
+      <div className="w-full h-1/3 px-44 max-[600px]:hidden flex justify-between items-center">
         <div className="cards flex items-center gap-4 p-7 bg-zinc-600 w-80  h-36">
           <div>
             <img

@@ -30,17 +30,18 @@ export default function Home() {
   };
 
   const filteredData = data
-  ? data.filter((item) => {
-      const titleLower = item.title.toLowerCase();
-      const authorLower = item.author.toLowerCase();
-      const genreLower = typeof item.genre === 'string' ? item.genre.toLowerCase() : '';
-      return (
-        titleLower.includes(filter.toLowerCase()) ||
-        authorLower.includes(filter.toLowerCase()) ||
-        genreLower.includes(filter.toLowerCase())
-      );
-    })
-  : [];
+    ? data.filter((item) => {
+        const titleLower = item.title.toLowerCase();
+        const authorLower = item.author.toLowerCase();
+        const genreLower =
+          typeof item.genre === "string" ? item.genre.toLowerCase() : "";
+        return (
+          titleLower.includes(filter.toLowerCase()) ||
+          authorLower.includes(filter.toLowerCase()) ||
+          genreLower.includes(filter.toLowerCase())
+        );
+      })
+    : [];
   return (
     <div className="w-full  bg-slate-100">
       <Headroom>
@@ -48,8 +49,8 @@ export default function Home() {
       </Headroom>
       <LandingPage />
       <div className="w-full h-36 flex items-center justify-center ">
-        <div className=" h-20  flex items-center justify-center w-[40vw]">
-          <form className="w-[70%]" action="">
+        <div className=" h-20  flex items-center justify-center w-[40vw] max-[600px]:w-full">
+          <form className="w-[70%] " action="">
             <input
               className=" w-full h-12 border-2 pl-4 rounded-md border-orange-300  "
               type="text"
@@ -69,32 +70,37 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full flex flex-col justify-between h-[90vh] overflow-scroll ">
-        <div className=" w-full  grid grid-cols-3 pl-10  justify-evenly ">
-          {
-            filteredData.map((item, index) => (
-              <div
-                key={index}
-                className="w-[80%] flex justify-evenly h-[100%] p-8 shadow-lg "
-              >
-                <div className="w-[50%] h-full  ">
-                  <img
-                    className="wf-ull h-full object-cover"
-                    src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="w-[45%] h-full">
-                  <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
-                    <div className="text-2xl font-semibold  ">{item.title}</div>
-                    <div className="text-xl">{item.author}</div>
-                    <div className="text-sm">
-                      Publication Year : {item.publication_year}
-                    </div>
-                    <div className="text-xs">Genre : {item.genre}</div>
-                    <div className="text-xl font-semibold  text-red-600">
-                      Rs.500.00
-                    </div>
-                    {/* <div className="w-full flex gap-2">
+        <div className=" w-full  grid grid-cols-3 pl-10  justify-evenly max-[600px]:grid-cols-2 max-[600px]:pl-0 ">
+          {filteredData.map((item, index) => (
+            <div
+              key={index}
+              className="w-[80%]  flex justify-evenly h-[100%] p-8 shadow-lg max-[600px]:w-[100%] max-[600px]:h-72 max-[600px]:flex-col"
+            >
+              <div className="w-[50%] h-full max-[600px]:w-full max-[600px]:h-[50%]  ">
+                <img
+                  className="w-full h-full object-cover"
+                  src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
+                  alt=""
+                />
+              </div>
+              <div className="w-[45%] h-full max-[600px]:w-full">
+                <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
+                  <div className="text-2xl font-bold max-[600px]:text-sm ">
+                    {item.title}
+                  </div>
+                  <div className="text-xl font-semibold max-[600px]:text-xs">
+                    {item.author}
+                  </div>
+                  <div className="text-sm max-[600px]:text-[2.5vw]">
+                    Publication Year : {item.publication_year}
+                  </div>
+                  <div className="text-xs  max-[600px]:text-[2.5vw]">
+                    Genre : {item.genre}
+                  </div>
+                  <div className="text-xl font-semibold  text-red-600  max-[600px]:text-[4vw]">
+                    Rs.500.00
+                  </div>
+                  {/* <div className="w-full flex gap-2">
                       <RiStarFill
                         size={15} // set custom `width` and `height`
                         className="my-icon  text-orange-300  " // add custom class name
@@ -116,24 +122,24 @@ export default function Home() {
                         className="my-icon  text-orange-300  " // add custom class name
                       />
                     </div> */}
-                    <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300  ">
-                      Buy Now
-                    </div>
+                  <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300   max-[600px]:p-1  max-[600px]:text-sm  max-[600px]:w-20  ">
+                    Buy Now
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
-      <div className="w-full pt-5 z-10 mt-5 h-[100vh] ">
+      <div className="w-full pt-5 z-10 mt-5 h-[100vh]   ">
         <div className="w-full h-10 flex items-center justify-center text-3xl mt-12 font-semibold">
           Why Choose Us ?
         </div>
         <div className="text-lg w-full flex items-center justify-center text-gray-600">
           A choice that makes the difference.
         </div>
-        <div className="w-full flex gap-10 items-center justify-center h-[70vh]">
-          <div className="w-[27%] h-[70%] bg-white flex flex-col items-center justify-evenly text-center ">
+        <div className="w-full flex gap-10 items-center justify-center h-[70vh] max-[600px]:flex-col">
+          <div className="w-[27%] h-[70%] bg-white flex flex-col items-center justify-evenly text-center max-[600px]:w-full ">
             <div className="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +173,7 @@ export default function Home() {
               adipisicing elit. Unde, iste?
             </div>
           </div>
-          <div className="w-[27%] h-[70%] bg-white flex flex-col items-center justify-evenly text-center ">
+          <div className="w-[27%] h-[70%] bg-white flex flex-col items-center justify-evenly text-center max-[600px]:w-full ">
             <div className="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +207,7 @@ export default function Home() {
               adipisicing elit. Unde, iste?
             </div>
           </div>
-          <div className="w-[27%] h-[70%] bg-white flex flex-col items-center justify-evenly text-center ">
+          <div className="w-[27%] h-[70%] bg-white flex flex-col items-center justify-evenly text-center max-[600px]:hidden ">
             <div className="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +242,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center justify-center max-[600px]:mt-5">
           <div className=" w-28 rounded-lg items-center justify-center flex h-10 bg-orange-300 ">
             Learn More
           </div>
