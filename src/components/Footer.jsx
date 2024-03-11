@@ -23,10 +23,10 @@ const Footer = () => {
             <h1 className="text-zinc-50">contact@eduma.com</h1>
           </div>
           <div className="logos-container text-zinc-50 text-2xl flex gap-3 mt-2">
-            <i class="ri-facebook-circle-line"></i>
-            <i class="ri-twitter-x-line"></i>
-            <i class="ri-instagram-line"></i>
-            <i class="ri-product-hunt-line"></i>
+            <i className="ri-facebook-circle-line"></i>
+            <i className="ri-twitter-x-line"></i>
+            <i className="ri-instagram-line"></i>
+            <i className="ri-product-hunt-line"></i>
           </div>
         </div>
         <div className="companyLinks flex justify-evenly w-[65%] pt-16">
@@ -63,10 +63,10 @@ const Footer = () => {
       <div className="footer-btm h-[20%] border-t-2 border-zinc-200 flex items-center justify-between text-zinc-50 px-32 py-5">
         <p>Premium LMS & Online Education WordPress Theme</p>
         <div className="flex gap-5">
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
-            <a href="">Sitemap</a>
-            <a href="">Purchase</a>
+          <a href="">Privacy</a>
+          <a href="">Terms</a>
+          <a href="">Sitemap</a>
+          <a href="">Purchase</a>
         </div>
       </div>
     </div>

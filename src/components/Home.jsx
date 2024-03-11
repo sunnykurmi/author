@@ -1,12 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "remixicon/fonts/remixicon.css";
 import Nav from "./Navbar";
 import LandingPage from "./LandingPage";
 import Footer from "./Footer";
 import { RiHeartFill, RiSearchLine, RiStarFill } from "@remixicon/react";
 import Headroom from "react-headroom";
+import axios from "axios";
 
 export default function Home() {
+  const [data, setData] = useState(null);
+  const [filter, setFilter] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://freetestapi.com/api/v1/books"
+        );
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const filteredData = data
+  ? data.filter((item) => {
+      const titleLower = item.title.toLowerCase();
+      const authorLower = item.author.toLowerCase();
+      const genreLower = typeof item.genre === 'string' ? item.genre.toLowerCase() : '';
+      return (
+        titleLower.includes(filter.toLowerCase()) ||
+        authorLower.includes(filter.toLowerCase()) ||
+        genreLower.includes(filter.toLowerCase())
+      );
+    })
+  : [];
   return (
     <div className="w-full  bg-slate-100">
       <Headroom>
@@ -22,6 +56,8 @@ export default function Home() {
               name=""
               placeholder="Search in books, authors, categories..."
               id=""
+              value={filter}
+              onChange={handleFilterChange}
             />
           </form>
           <div className="flex items-center justify-center text-white h-12 w-16 rounded-md p-2 bg-orange-400">
@@ -32,268 +68,61 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col justify-between h-[90vh] ">
-        <div className=" w-full  h-[50%] flex  justify-evenly ">
-          <div className="w-[30%] flex justify-evenly h-[100%] p-8 shadow-lg ">
-            <div className="w-[50%] h-full  ">
-              <img
-                className="wf-ull h-full object-cover"
-                src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
-                alt=""
-              />
-            </div>
-            <div className="w-[45%] h-full">
-              <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
-                <div className="text-4xl">Soul</div>
-                <div className="text-xl">Author Name</div>
-                <div className="text-xl font-semibold  text-red-600">
-                  Rs.500.00
-                </div>
-                <div className="w-full flex gap-2">
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
+      <div className="w-full flex flex-col justify-between h-[90vh] overflow-scroll ">
+        <div className=" w-full  grid grid-cols-3 pl-10  justify-evenly ">
+          {
+            filteredData.map((item, index) => (
+              <div
+                key={index}
+                className="w-[80%] flex justify-evenly h-[100%] p-8 shadow-lg "
+              >
+                <div className="w-[50%] h-full  ">
+                  <img
+                    className="wf-ull h-full object-cover"
+                    src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
+                    alt=""
                   />
                 </div>
-                <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300  ">
-                  Buy Now
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-[30%] flex justify-evenly h-[100%] p-8 shadow-lg ">
-            <div className="w-[50%] h-full  ">
-              <img
-                className="wf-ull h-full object-cover"
-                src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
-                alt=""
-              />
-            </div>
-            <div className="w-[45%] h-full">
-              <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
-                <div className="text-4xl">Soul</div>
-                <div className="text-xl">Author Name</div>
-                <div className="text-xl font-semibold  text-red-600">
-                  Rs.500.00
-                </div>
-                <div className="w-full flex gap-2">
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                </div>
-                <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300  ">
-                  Buy Now
+                <div className="w-[45%] h-full">
+                  <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
+                    <div className="text-2xl font-semibold  ">{item.title}</div>
+                    <div className="text-xl">{item.author}</div>
+                    <div className="text-sm">
+                      Publication Year : {item.publication_year}
+                    </div>
+                    <div className="text-xs">Genre : {item.genre}</div>
+                    <div className="text-xl font-semibold  text-red-600">
+                      Rs.500.00
+                    </div>
+                    {/* <div className="w-full flex gap-2">
+                      <RiStarFill
+                        size={15} // set custom `width` and `height`
+                        className="my-icon  text-orange-300  " // add custom class name
+                      />
+                      <RiStarFill
+                        size={15} // set custom `width` and `height`
+                        className="my-icon  text-orange-300  " // add custom class name
+                      />
+                      <RiStarFill
+                        size={15} // set custom `width` and `height`
+                        className="my-icon  text-orange-300  " // add custom class name
+                      />
+                      <RiStarFill
+                        size={15} // set custom `width` and `height`
+                        className="my-icon  text-orange-300  " // add custom class name
+                      />
+                      <RiStarFill
+                        size={15} // set custom `width` and `height`
+                        className="my-icon  text-orange-300  " // add custom class name
+                      />
+                    </div> */}
+                    <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300  ">
+                      Buy Now
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="w-[30%] flex justify-evenly h-[100%] p-8 shadow-lg ">
-            <div className="w-[50%] h-full  ">
-              <img
-                className="wf-ull h-full object-cover"
-                src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
-                alt=""
-              />
-            </div>
-            <div className="w-[45%] h-full">
-              <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
-                <div className="text-4xl">Soul</div>
-                <div className="text-xl">Author Name</div>
-                <div className="text-xl font-semibold  text-red-600">
-                  Rs.500.00
-                </div>
-                <div className="w-full flex gap-2">
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                </div>
-                <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300  ">
-                  Buy Now
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className=" w-full  h-[50%] flex  justify-evenly ">
-          <div className="w-[30%] flex justify-evenly h-[100%] p-8 shadow-lg ">
-            <div className="w-[50%] h-full  ">
-              <img
-                className="wf-ull h-full object-cover"
-                src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
-                alt=""
-              />
-            </div>
-            <div className="w-[45%] h-full">
-              <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
-                <div className="text-4xl">Soul</div>
-                <div className="text-xl">Author Name</div>
-                <div className="text-xl font-semibold  text-red-600">
-                  Rs.500.00
-                </div>
-                <div className="w-full flex gap-2">
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                </div>
-                <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300  ">
-                  Buy Now
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-[30%] flex justify-evenly h-[100%] p-8 shadow-lg ">
-            <div className="w-[50%] h-full  ">
-              <img
-                className="wf-ull h-full object-cover"
-                src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
-                alt=""
-              />
-            </div>
-            <div className="w-[45%] h-full">
-              <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
-                <div className="text-4xl">Soul</div>
-                <div className="text-xl">Author Name</div>
-                <div className="text-xl font-semibold  text-red-600">
-                  Rs.500.00
-                </div>
-                <div className="w-full flex gap-2">
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                </div>
-                <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300  ">
-                  Buy Now
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-[30%] flex justify-evenly h-[100%] p-8 shadow-lg ">
-            <div className="w-[50%] h-full  ">
-              <img
-                className="wf-ull h-full object-cover"
-                src="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
-                alt=""
-              />
-            </div>
-            <div className="w-[45%] h-full">
-              <div className="flex justify-between pb-5 pt-2 flex-col h-full ">
-                <div className="text-4xl">Soul</div>
-                <div className="text-xl">Author Name</div>
-                <div className="text-xl font-semibold  text-red-600">
-                  Rs.500.00
-                </div>
-                <div className="w-full flex gap-2">
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                  <RiStarFill
-                    size={15} // set custom `width` and `height`
-                    className="my-icon  text-orange-300  " // add custom class name
-                  />
-                </div>
-                <div className=" p-2  flex rounded-lg text-xl font-semibold text-white items-center justify-center bg-orange-300  ">
-                  Buy Now
-                </div>
-              </div>
-            </div>
-          </div>
+            ))}
         </div>
       </div>
       <div className="w-full pt-5 z-10 mt-5 h-[100vh] ">

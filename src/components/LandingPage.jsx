@@ -15,7 +15,9 @@ const LandingPage = () => {
       <div className="w-full h-2/3 p-44">
         <h2 className="text-2xl text-zinc-50">The Best Theme For</h2>
         <h1 className="text-8xl text-zinc-50">EDUCATION</h1>
-        <button className="bg-yellow-400 p-2 px-6 rounded font-semibold mt-3">BUY NOW</button>
+        <button className="bg-yellow-400 p-2 px-6 rounded font-semibold mt-3">
+          BUY NOW
+        </button>
       </div>
 
       <div className="w-full h-1/3 px-44 flex justify-between items-center">
@@ -31,7 +33,7 @@ const LandingPage = () => {
               BEST INDUSTRY LEADERS
             </h1>
             <p className="text-yellow-400">
-              View more <i class="ri-arrow-right-line"></i>
+              View more <i className="ri-arrow-right-line"></i>
             </p>
           </div>
         </div>
@@ -47,7 +49,7 @@ const LandingPage = () => {
               BEST INDUSTRY LEADERS
             </h1>
             <p className="text-yellow-400">
-              View more <i class="ri-arrow-right-line"></i>
+              View more <i className="ri-arrow-right-line"></i>
             </p>
           </div>
         </div>
@@ -63,7 +65,7 @@ const LandingPage = () => {
               BEST INDUSTRY LEADERS
             </h1>
             <p className="text-yellow-400">
-              View more <i class="ri-arrow-right-line"></i>
+              View more <i className="ri-arrow-right-line"></i>
             </p>
           </div>
         </div>
