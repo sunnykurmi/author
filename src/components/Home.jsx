@@ -13,7 +13,6 @@ export default function Home() {
         <Nav />
       </Headroom>
       <LandingPage />
-      <div className="text-4xl mt-10 font-semibold">Popular Books</div>
       <div className="w-full h-36 flex items-center justify-center ">
         <div className=" h-20  flex items-center justify-center w-[40vw]">
           <form className="w-[70%]" action="">
